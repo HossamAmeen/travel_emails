@@ -241,17 +241,10 @@ if (!isset($_POST['sectors']) && !is_array($_POST['sectors'])) {
   return;
 }
 foreach ($sectors as $sector) {
-    // echo  $sectors;
-    echo gettype($sector) . "<br>";
-    if (is_array($sector)) {
-      print_r($sector);
-    }elseif(is_string($sector)) {
-      $sector = json_decode($sector, true);
       $sector_code_item = str_replace('{{sectorCount}}', $sector_count, $sector_code_item_temp);
       $sector_code_item = str_replace('{{departureAirport}}', $sector['departureAirport'], $sector_code_item);
       $sector_count++;
       $sector_code = $sector_code. $sector_code_item;
-    }
     
 }
 
