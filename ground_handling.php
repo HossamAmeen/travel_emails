@@ -114,8 +114,8 @@ if (!is_dir('uploads')) {
   mkdir('uploads', 0777, true);
 }
 
-if (!is_dir('zips')) {
-  mkdir('zips', 0777, true);
+if (!is_dir('uploads/zips')) {
+  mkdir('uploads/zips', 0777, true);
 }
 
 $zipFileName = "uploads/zips/" . $file_name . "_" . $operatorName . "_" .  date('Ymd_His') . '.zip';
@@ -133,6 +133,7 @@ foreach ($files as $file) {
         exit("File $file does not exist\n");
     }
 }
+
 $zip->close();
 $zipFileName = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $zipFileName;
 
@@ -237,9 +238,11 @@ $sector_code = '';
 if (!isset($_POST['sectors']) && !is_array($_POST['sectors'])) {
   http_response_code(400); // Set HTTP response code to 400 Bad Request
   echo json_encode(['status' => 'error', 'message' => 'Sectors must be an array']);
-  return
+  return;
 }
 foreach ($sectors as $sector) {
+    // echo  $sectors;
+    echo gettype($sector) . "<br>";
     $sector = json_decode($sector, true);
     $sector_code_item = str_replace('{{sectorCount}}', $sector_count, $sector_code_item_temp);
     $sector_code_item = str_replace('{{departureAirport}}', $sector['departureAirport'], $sector_code_item);
