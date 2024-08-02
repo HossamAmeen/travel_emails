@@ -109,6 +109,15 @@ if (isset($_FILES['crewDocument']) && $_FILES['crewDocument']['error'] == 0) {
 ############################## zip
 $files = [$crew_document_file_dest_path, $fuel_dest_path];
 
+
+if (!is_dir('uploads')) {
+  mkdir('uploads', 0777, true);
+}
+
+if (!is_dir('zips')) {
+  mkdir('zips', 0777, true);
+}
+
 $zipFileName = "uploads/zips/" . $file_name . "_" . $operatorName . "_" .  date('Ymd_His') . '.zip';
 
 $zip = new ZipArchive();
@@ -228,6 +237,7 @@ $sector_code = '';
 if (!isset($_POST['sectors']) && !is_array($_POST['sectors'])) {
   http_response_code(400); // Set HTTP response code to 400 Bad Request
   echo json_encode(['status' => 'error', 'message' => 'Sectors must be an array']);
+  return
 }
 foreach ($sectors as $sector) {
     $sector = json_decode($sector, true);
@@ -262,8 +272,8 @@ $htmlContent = str_replace('{{comment}}', $comment, $htmlContent);
 $htmlContent = str_replace('{{sector_code}}', $sector_code, $htmlContent);
 $htmlContent = str_replace('{{zip_url}}', $zipFileName, $htmlContent);
 
-// send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
-send_email('Ground handling', 'AbdooTawfeek@gmail.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
+send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
+// send_email('Ground handling', 'AbdooTawfeek@gmail.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
     
 
 ?>
