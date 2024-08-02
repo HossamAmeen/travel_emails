@@ -66,7 +66,7 @@ $baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
 
 if (isset($_FILES['fuelRelease'])) {
     $fuel_release_file = $_FILES['fuelRelease'];
-    $fuel_dest_path = $file_name . '/' . $user_name . '/' . date('Ymd_His') . "_" . $fuel_release_file['name']; 
+    $fuel_dest_path = $file_name . '/' . $user_name . '/' . date('Ymd_His')  . rand(1,10) . "_" . $fuel_release_file['name']; 
     if(move_uploaded_file($fuel_release_file['tmp_name'], $fuel_dest_path)) {
         $fuelRelease = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $fuel_dest_path;
     }else{
@@ -87,7 +87,7 @@ if (isset($_FILES['fuelRelease'])) {
 
 if (isset($_FILES['crewDocument']) && $_FILES['crewDocument']['error'] == 0) {
     $crew_document_file = $_FILES['crewDocument'];
-    $crew_document_file_dest_path = $file_name . '/' . $user_name . '/' . date('Ymd_His') . "_" . $crew_document_file['name']; 
+    $crew_document_file_dest_path = $file_name . '/' . $user_name . '/' . date('Ymd_His') . rand(1,10) . "_" . $crew_document_file['name']; 
     if(move_uploaded_file($crew_document_file['tmp_name'], $crew_document_file_dest_path)) {
         $crewDocument = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $crew_document_file_dest_path;
     }else{
@@ -311,8 +311,8 @@ $htmlContent = str_replace('{{sector_code}}', $sector_code, $htmlContent);
 $htmlContent = str_replace('{{zip_url}}', $zipFileName, $htmlContent);
 $htmlContent = str_replace('{{downloadLink}}', $downloadLink, $htmlContent);
 
-send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
-// send_email('Ground handling', 'AbdooTawfeek@gmail.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
+// send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
+send_email('Ground handling', 'AbdooTawfeek@gmail.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
     
 
 ?>
