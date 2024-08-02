@@ -120,23 +120,7 @@ if (!is_dir('uploads/zips')) {
 
 $zipFileName = "uploads/zips/" . $file_name . "_" . $operatorName . "_" .  date('Ymd_His') . '.zip';
 
-$zip = new ZipArchive();
-if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
-    exit("Unable to create zip file $zipFileName\n");
-}
-
-// Add files to the zip archive
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        $zip->addFile($file, ($file));
-    } else {
-        exit("File $file does not exist\n");
-    }
-}
-
-$zip->close();
-$zipFileName = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $zipFileName;
-
+# create pdf
 
 $sector_code_item_temp = '
 <div class="sectors">
@@ -268,6 +252,51 @@ $pdf_content = str_replace('{{sector_code}}', $sector_code, $pdf_content);
 $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 $pdf_content = str_replace('{{today}}', $today, $pdf_content);
 
+
+$mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
+$mpdf->WriteHTML($pdf_content);
+
+$file_name = strtolower($file_name);
+if (!is_dir($file_name)) {
+    mkdir($file_name, 0777, true);
+}
+
+$user_name = strtolower($user_name);
+if (!is_dir($file_name . '/' .$user_name)) {
+    mkdir($file_name . '/' . $user_name, 0777, true);
+}
+$pdf_path = $file_name. '/' . $user_name . '/' . $file_name . '_' . date('Ymd_His'). '.pdf';
+$mpdf->Output($pdf_path, 'F'); 
+
+$lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
+$baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
+$downloadLink = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $pdf_path;
+
+
+$zip = new ZipArchive();
+if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
+    exit("Unable to create zip file $zipFileName\n");
+}
+
+array_push($files, $pdf_path);
+
+// Add files to the zip archive
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        $zip->addFile($file, ($file));
+    } else {
+        exit("File $file does not exist\n");
+    }
+}
+
+$zip->close();
+$zipFileName = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $zipFileName;
+
+
+
+
+
+
 $htmlContent = str_replace('{{operatorName}}', $operatorName, $htmlContent);
 $htmlContent = str_replace('{{operatorEmail}}', $operatorEmail, $htmlContent);
 $htmlContent = str_replace('{{operatorPhone}}', $operatorPhone, $htmlContent);
@@ -280,6 +309,7 @@ $htmlContent = str_replace('{{crewDocument}}', $crewDocument, $htmlContent);
 $htmlContent = str_replace('{{comment}}', $comment, $htmlContent);
 $htmlContent = str_replace('{{sector_code}}', $sector_code, $htmlContent);
 $htmlContent = str_replace('{{zip_url}}', $zipFileName, $htmlContent);
+$htmlContent = str_replace('{{downloadLink}}', $downloadLink, $htmlContent);
 
 send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
 // send_email('Ground handling', 'AbdooTawfeek@gmail.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
