@@ -173,7 +173,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Arrival Airport:</span>
-              XXXXXX
+              {{arrivalAirport}}
             </div>
             <div class="title" style="margin-bottom: 18px; font-size: 18px; font-weight: 200">
               <span style="
@@ -182,7 +182,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Departure Date & Time:</span>
-              XXXXXX
+              {{departureDateTime}}
             </div>
             <div class="title" style="margin-bottom: 18px; font-size: 18px; font-weight: 200">
               <span style="
@@ -191,7 +191,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Arrival Date & Time:</span>
-              XXXXXX
+              {{arrivalDateTime}}
             </div>
             <div class="title" style="margin-bottom: 18px; font-size: 18px; font-weight: 200">
               <span style="
@@ -200,7 +200,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Departure Airport:</span>
-              XXXXXX
+              {{departureAirportAdd}}
             </div>
             <div class="title" style="margin-bottom: 18px; font-size: 18px; font-weight: 200">
               <span style="
@@ -209,7 +209,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Arrival Airport:</span>
-              XXXXXX
+              {{arrivalAirportAdd}}
             </div>
             <div class="title" style="margin-bottom: 18px; font-size: 18px; font-weight: 200">
               <span style="
@@ -218,7 +218,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Departure Date & Time:</span>
-              XXXXXX
+              {{departureDateTimeAdd}}
             </div>
             <div class="title" style="margin-bottom: 18px; font-size: 18px; font-weight: 200">
               <span style="
@@ -227,7 +227,7 @@ $sector_code_item_temp = '
                     color: #bda55d;
                     font-weight: 500;
                   ">Arrival Date & Time:</span>
-              XXXXXX
+              {{arrivalDateTimeAdd}}
             </div>
           </div>
         </div>';
@@ -241,10 +241,18 @@ if (!isset($_POST['sectors']) && !is_array($_POST['sectors'])) {
   return;
 }
 foreach ($sectors as $sector) {
-      $sector_code_item = str_replace('{{sectorCount}}', $sector_count, $sector_code_item_temp);
-      $sector_code_item = str_replace('{{departureAirport}}', $sector['departureAirport'], $sector_code_item);
-      $sector_count++;
-      $sector_code = $sector_code. $sector_code_item;
+  $sector_code_item = str_replace('{{sectorCount}}', $sector_count, $sector_code_item_temp);
+  $sector_code_item = str_replace('{{departureAirport}}', $sector['departureAirport'], $sector_code_item);
+  $sector_code_item = str_replace('{{arrivalAirport}}', $sector['arrivalAirport'], $sector_code_item);
+  $sector_code_item = str_replace('{{departureDateTime}}', $sector['departureDateTime'], $sector_code_item);
+  $sector_code_item = str_replace('{{arrivalDateTime}}', $sector['arrivalDateTime'], $sector_code_item);
+  $sector_code_item = str_replace('{{departureAirportAdd}}', $sector['departureAirportAdd'], $sector_code_item);
+  $sector_code_item = str_replace('{{arrivalAirportAdd}}', $sector['arrivalAirportAdd'], $sector_code_item);
+  $sector_code_item = str_replace('{{departureDateTimeAdd}}', $sector['departureDateTimeAdd'], $sector_code_item);
+  $sector_code_item = str_replace('{{arrivalDateTimeAdd}}', $sector['arrivalDateTimeAdd'], $sector_code_item);
+
+  $sector_count++;
+  $sector_code = $sector_code. $sector_code_item;
     
 }
 
