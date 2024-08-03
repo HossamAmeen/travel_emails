@@ -31,31 +31,31 @@ try {
     $mail->isHTML(true);  // Set email format to HTML
     $mail->Subject = $Subject;
 
-    $today = date('d F Y');
-    $today = str_replace(date('F'), strtoupper(date('F')), $today);
+    // $today = date('d F Y');
+    // $today = str_replace(date('F'), strtoupper(date('F')), $today);
 
-    $body = str_replace('{{today}}', $today, $body);
+    // $body = str_replace('{{today}}', $today, $body);
     
-    # create pdf
-    $mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
-    $mpdf->WriteHTML($pdf_body);
+    // # create pdf
+    // $mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
+    // $mpdf->WriteHTML($pdf_body);
     
-    $file_name = strtolower($file_name);
-    if (!is_dir($file_name)) {
-        mkdir($file_name, 0777, true);
-    }
+    // $file_name = strtolower($file_name);
+    // if (!is_dir($file_name)) {
+    //     mkdir($file_name, 0777, true);
+    // }
     
-    $user_name = strtolower($user_name);
-    if (!is_dir($file_name . '/' .$user_name)) {
-        mkdir($file_name . '/' . $user_name, 0777, true);
-    }
-    $file_path = $file_name. '/' . $user_name . '/' . $file_name . '_' . date('Ymd_His'). '.pdf';
-    $mpdf->Output($file_path, 'F'); 
+    // $user_name = strtolower($user_name);
+    // if (!is_dir($file_name . '/' .$user_name)) {
+    //     mkdir($file_name . '/' . $user_name, 0777, true);
+    // }
+    // $file_path = $file_name. '/' . $user_name . '/' . $file_name . '_' . date('Ymd_His'). '.pdf';
+    // $mpdf->Output($file_path, 'F'); 
 
-    $lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
-    $baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
-    $downloadLink = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $file_path;
-    $body = str_replace('{{downloadLink}}', $downloadLink, $body);
+    // $lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
+    // $baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
+    // $downloadLink = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $file_path;
+    // $body = str_replace('{{downloadLink}}', $downloadLink, $body);
 
 
     $mail->Body = $body;
