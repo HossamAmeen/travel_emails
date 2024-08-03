@@ -2,6 +2,7 @@
     "require": {
         "mpdf/mpdf": "^8.2",
         "phpmailer/phpmailer": "^6.9",
-        "jenssegers/blade": "^2.0"
+        "jenssegers/blade": "^2.0",
+        "twig/twig": "^3.10"
     }
 }
