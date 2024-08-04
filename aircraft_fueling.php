@@ -15,7 +15,7 @@ $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader, [
     // 'cache' => __DIR__ . '/cache',
 ]);
-$file_name = "catering";
+$file_name = "aircraft_fueling";
 $user_name = $_POST['operatorName'];
 $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 
@@ -52,7 +52,7 @@ $_POST['is_email'] = True;
 
 $template_data =  $twig->render('aircraft_fueling.html.twig', $_POST);
 
-send_email('catering', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
+send_email('aircraft fueling', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
 
 
 ?>
