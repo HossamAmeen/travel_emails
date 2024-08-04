@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PERMIT REQUEST - LANDING</title>
+  </head>
+  <body
+    style="
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      padding: 0;
+      margin: 0;
+      background-color: #000000;
+      padding-bottom: 60px;
+      scroll-behavior: smooth;
+    "
+  >
+    <!-- Header -->
+    <div class="header" style="margin: 60px 0px 20px">
+      <div
+        class="container"
+        style="
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <div class="heading" style="text-align: center">
+          <h1
+            class="email-header"
+            style="
+              font-size: 30px;
+              font-weight: 500;
+              color: #fff;
+              text-transform: uppercase;
+              margin: 60px 0 30px;
+            "
+          >
+            PERMIT REQUEST - LANDING
+          </h1>
+          <p
+            style="
+              color: #bda55d;
+              font-size: 22px;
+              font-weight: 600;
+              margin-bottom: 30px;
+            "
+          >
+            <span>Date: </span>{{today}}
+          </p>
+          <hr
+            style="
+              max-width: 150px;
+              height: 3px;
+              border-color: #bda55d;
+              background-color: #bda55d;
+              margin: 0 auto;
+            "
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Box Data -->
+    <div class="content">
+      <div
+        class="container"
+        style="
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <div
+          class="box-data"
+          style="
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 35px;
+            color: #fff;
+            margin: 0 auto;
+          "
+        >
+          <div
+            class="text"
+            style="
+              font-size: 18px;
+              text-transform: capitalize;
+              margin-bottom: 30px;
+            "
+          >
+            We kindly request Permit for Landing for the following Flight:
+          </div>
+          <div class="form-data" style="margin: 20px 0px 40px">
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Aircraft Operator Name:</span
+              >
+              {{operatorName}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Aircraft Operator Email:</span
+              >
+              {{operatorEmail}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Operator Contact Number:</span
+              >
+              {{operatorPhone}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Operator Website:</span
+              >
+              {{operatorWebsite}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Registration Nationality:</span
+              >
+              {{registrationNationality}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Aircraft Registration:</span
+              >
+            {{aircraftRegistration}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Type of Passengers:</span
+              >
+              {{typeOfPassenger}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Flight Call Sign:</span
+              >
+              {{flightCallSign}}
+            </div>
+            <div
+              class="title"
+              style="
+                margin-bottom: 18px;
+                font-size: 18px;
+                font-weight: 200;
+                flex: 1;
+                min-width: 200px;
+              "
+            >
+              <span
+                style="
+                  display: inline;
+                  margin-bottom: 10px;
+                  color: #bda55d;
+                  font-weight: 500;
+                "
+                >Flight Purpose:</span
+              >
+              {{flighPurpose}}
+            </div>
+          </div>
+
+          <div class="pdf-section" style="margin-top: 30px">
+            <div class="header-section" style="margin-top: 30px">
+              <span
+                style="
+                  display: block;
+                  font-size: 25px;
+                  font-weight: 600;
+                  margin-bottom: 20px;
+                "
+                >PDF Files</span
+              >
+              <hr
+                style="
+                  max-width: 80px;
+                  height: 4px;
+                  border-color: #bda55d;
+                  background-color: #bda55d;
+                  border-radius: 12px;
+                  margin: 1px;
+                "
+              />
+            </div>
+            <div
+              class="form-data pdfs"
+              style="
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                max-width: 900px;
+              "
+            >
+              <div
+                class="pdf-container"
+                style="display: inline; max-width: 900px"
+              >
+                <div class="pdf" style="margin-bottom: 18px; line-height: 30px">
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Valid Certificate of Insurance</span
+                  >
+                  <a
+                    href="{{certInsurance}}"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >Download
+                  </a>
+                </div>
+                <div class="pdf" style="margin-bottom: 18px; line-height: 30px">
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Valid Certificate of Airworthiness</span
+                  >
+                  <a
+                    href="{{airworthiness}}"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >
+                    Download
+                  </a>
+                </div>
+                <div class="pdf" style="margin-bottom: 18px; line-height: 30px">
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Radio License Certificate</span
+                  >
+                  <a
+                    href="{{radioLicense}}"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+              <div
+                class="pdf-container"
+                style="display: inline; max-width: 800px"
+              >
+                <div class="pdf" style="margin-bottom: 18px; line-height: 30px">
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Certificate Of Noise</span
+                  >
+                  <a
+                    href="{{noise}}"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >
+                    Download
+                  </a>
+                </div>
+                <div class="pdf" style="margin-bottom: 18px; line-height: 30px">
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Certificate Of Registration</span
+                  >
+                  <a
+                    href="{{certRegistration}}"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >
+                   Download
+                  </a>
+                </div>
+              </div>
+              <div
+                class="pdf-container"
+                style="display: inline; max-width: 800px"
+              ></div>
+            </div>
+          </div>
+
+          <hr
+            style="
+              border-color: #bda55d;
+              background-color: #bda55d;
+              height: 2px;
+              margin-top: 30px;
+            "
+          />
+
+          <!-- sectors -->
+          {% for item in sectors %}
+          <div class="sectors">
+            <div class="header-section" style="margin-top: 30px">
+              <span
+                style="
+                  display: block;
+                  font-size: 25px;
+                  font-weight: 600;
+                  margin-bottom: 20px;
+                "
+                >Flight Sectors - {{ loop.index }}</span
+              >
+              <hr
+                style="
+                  max-width: 80px;
+                  height: 4px;
+                  border-color: #bda55d;
+                  background-color: #bda55d;
+                  border-radius: 12px;
+                  margin: 1px;
+                "
+              />
+            </div>
+            <div class="form-data" style="margin: 20px 0px 40px">
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Departure Airport:</span
+                >
+                {{item['departureAirport']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Arrival Airport:</span
+                >
+                {{item['arrivalAirport']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Departure Date & Time:</span
+                >
+                {{item['departureDateTime']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Arrival Date & Time:</span
+                >
+                {{item['arrivalDateTime']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Departure Airport:</span
+                >
+                {{item['departureAirportAdd']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Arrival Airport:</span
+                >
+                {{item['arrivalAirportAdd']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Departure Date & Time:</span
+                >
+                {{item['departureDateTimeAdd']}}
+              </div>
+              <div
+                class="title"
+                style="
+                  margin-bottom: 18px;
+                  font-size: 18px;
+                  font-weight: 200;
+                  flex: 1;
+                  min-width: 200px;
+                "
+              >
+                <span
+                  style="
+                    display: inline;
+                    margin-bottom: 10px;
+                    color: #bda55d;
+                    font-weight: 500;
+                  "
+                  >Arrival Date & Time:</span
+                >
+                {{item['arrivalDateTimeAdd']}}
+              </div>
+            </div>
+            
+  
+            <div class="pdf-section">
+              <div class="header-section" style="margin-top: 30px">
+                <span
+                  style="
+                    display: block;
+                    font-size: 25px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                  "
+                  >PDF Files</span
+                >
+                <hr
+                  style="
+                    max-width: 80px;
+                    height: 4px;
+                    border-color: #bda55d;
+                    background-color: #bda55d;
+                    border-radius: 12px;
+                    margin: 1px;
+                  "
+                />
+              </div>
+              <div class="form-data" style="display: flex; flex-wrap: wrap">
+                <div
+                  class="pdf"
+                  style="
+                    margin-bottom: 18px;
+                    line-height: 30px;
+                    flex: 1;
+                    min-width: 200px;
+                  "
+                >
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Crew General Declaration & Passenger Manifest</span
+                  >
+                  <a
+                    href="#"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >
+                   Download
+                  </a>
+                </div>
+                <div
+                  class="pdf"
+                  style="
+                    margin-bottom: 18px;
+                    line-height: 30px;
+                    flex: 1;
+                    min-width: 200px;
+                  "
+                >
+                  <span
+                    class="title"
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Ground Handling Confirmation</span
+                  >
+                  <a
+                    href="#"
+                    style="
+                      color: #bda55d;
+                      font-size: 16px;
+                      font-weight: 300;
+                      text-decoration: none;
+                      padding: 10px;
+                      border-radius: 5px;
+                      border: 1px solid #fff;
+                      margin-top: 10px;
+                    "
+                  >
+                    Download
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!-- Comment -->
+          <div class="comment" style="margin-top: 40px">
+            <div class="header-section" style="margin-top: 30px">
+              <span
+                style="
+                  display: block;
+                  font-size: 25px;
+                  font-weight: 600;
+                  margin-bottom: 20px;
+                "
+                >Comment:</span
+              >
+              <hr
+                style="
+                  max-width: 80px;
+                  height: 4px;
+                  border-color: #bda55d;
+                  background-color: #bda55d;
+                  border-radius: 12px;
+                  margin: 1px;
+                "
+              />
+            </div>
+            <div
+              class="data"
+              style="
+                margin-top: 20px;
+                font-size: 16px;
+                font-weight: 600;
+                max-width: 800px;
+              "
+            >
+             {{comment}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if is_email%}
+    <!-- Action Buttons -->
+    <div class="btns" style="width: 100%; margin: 40px auto 0px; text-align: center">
+      <a
+        href="{{download_link}}"
+        style="
+          color: #bda55d;
+          font-size: 16px;
+          font-weight: 600;
+          background-color: rgba(217, 217, 217, 0.1);
+          text-decoration: none;
+          padding: 10px 20px;
+          margin: 0px 10px;
+          border-radius: 5px;
+          border: 2px solid #bda55d;
+        "
+        ><span>+ Download Form</span></a
+      >
+      <a
+      href="{{download_link}}"
+      style="
+        color: #bda55d;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: rgba(217, 217, 217, 0.1);
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0px 10px;
+        border-radius: 5px;
+        border: 2px solid #bda55d;
+      "
+      ><span>+ Download Form and PDF </span></a
+    >
+    </div>
+    {% endif %}
+  </body>
+</html>
