@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catering</title>
+    <title>Aircraft Fueling</title>
   </head>
   <body
     style="
@@ -13,6 +13,7 @@
       margin: 0;
       background-color: #000000;
       padding-bottom: 60px;
+      scroll-behavior: smooth;
     "
   >
     <!-- Header -->
@@ -37,7 +38,7 @@
               margin: 60px 0 30px;
             "
           >
-            VIP Catering Request
+            Aircraft Fueling Request
           </h1>
           <p
             style="
@@ -92,7 +93,7 @@
               margin-bottom: 30px;
             "
           >
-            we kindly VIP Catering for the following Flight:
+            We kindly request Aircraft Fueling for the following Flight:
           </div>
           <div class="form-data" style="margin: 20px 0px 40px">
             <div
@@ -202,15 +203,23 @@
             </div>
           </div>
 
-          <hr style="margin-top: 30px" />
+          <hr
+            style="
+              max-width: 100%;
+              height: 3px;
+              border-color: #bda55d;
+              background-color: #bda55d;
+              margin: 20px 0;
+            "
+          />
 
+          <!-- Sectors -->
           {% for item in sectors %}
-          <!-- sectors -->
           <div class="sectors">
             <div class="header-section" style="margin-top: 30px">
               <span
                 style="
-                  display: block;
+                  display: inline;
                   font-size: 25px;
                   font-weight: 600;
                   margin-bottom: 20px;
@@ -224,7 +233,7 @@
                   border-color: #bda55d;
                   background-color: #bda55d;
                   border-radius: 12px;
-                  margin: 1px;
+                  margin: 15px 1px;
                 "
               />
             </div>
@@ -351,7 +360,6 @@
               </div>
             </div>
           </div>
-          {% endfor %}
 
           <!-- Comment -->
           <div class="comment" style="margin-top: 40px">
@@ -385,15 +393,17 @@
                 max-width: 800px;
               "
             >
-              {{comment}}
+             {{comment}}
             </div>
           </div>
         </div>
       </div>
     </div>
-    {% if is_email%}
     <!-- Action Buttons -->
-    <div class="btns" style="width: 100%; margin: 40px auto 0px; text-align: center">
+    <div
+      class="btns"
+      style="width: 100%; margin: 40px auto 0px; text-align: center"
+    >
       <a
         href="{{download_link}}"
         style="
@@ -403,13 +413,12 @@
           background-color: rgba(217, 217, 217, 0.1);
           text-decoration: none;
           padding: 10px 20px;
-          margin: 0px 10px;
           border-radius: 5px;
           border: 2px solid #bda55d;
         "
-        ><span>+ Download Form</span></a
       >
+        <span>+ Download Form</span>
+      </a>
     </div>
-    {% endif %}
   </body>
 </html>

@@ -58,6 +58,7 @@ $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 $pdf_content = str_replace('{{today}}', $today, $pdf_content);
     
 
+$htmlContent = str_replace('{{today}}', $today, $htmlContent);
 $htmlContent = str_replace('{{name}}', $name, $htmlContent);
 $htmlContent = str_replace('{{email}}', $email, $htmlContent);
 $htmlContent = str_replace('{{phoneNumber}}', $phoneNumber, $htmlContent);

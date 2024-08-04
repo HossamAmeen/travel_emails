@@ -41,6 +41,7 @@ $carType = filter_input(INPUT_POST, 'carType', FILTER_SANITIZE_STRING);
 $comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
 
 
+$htmlContent = str_replace('{{today}}', $today, $htmlContent);
 $htmlContent = str_replace('{{travelerName}}', $travelerName, $htmlContent);
 $htmlContent = str_replace('{{travelerContactNumber}}', $travelerContactNumber, $htmlContent);
 $htmlContent = str_replace('{{aircraftRegistration}}', $aircraftRegistration, $htmlContent);
