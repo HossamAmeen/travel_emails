@@ -48,7 +48,7 @@
               margin-bottom: 30px;
             "
           >
-            <span>Date: </span>22 JUNE 2024
+            <span>Date: </span>{{today}}
           </p>
           <hr
             style="
@@ -109,7 +109,7 @@
                 "
                 >Client Name:</span
               >
-              SPIRE FLIGHT SOLUTIONS
+              {{name}}
             </div>
             <div
               class="title"
@@ -139,7 +139,7 @@
                 "
                 >Client Email Address:</span
               >
-              XXXX@XXXX.COM
+              {{clientEmail}}
             </div>
             <div
               class="title"
@@ -154,7 +154,7 @@
                 "
                 >Travellers:</span
               >
-              XXXXXX
+              {{travellers}}
             </div>
             <div
               class="title"
@@ -169,7 +169,7 @@
                 "
                 >Departure Airport:</span
               >
-              XXXXXX
+              {{departureAirport}}
             </div>
             <div
               class="title"
@@ -184,7 +184,7 @@
                 "
                 >Arrival Airport:</span
               >
-              XXXXXX
+              {{arrivalAirport}}
             </div>
             <div
               class="title"
@@ -199,7 +199,7 @@
                 "
                 >Date:</span
               >
-              XXXXXX
+              {{date}}
             </div>
             <div
               class="title"
@@ -214,7 +214,7 @@
                 "
                 >Return Date:</span
               >
-              XXXXXX
+              {{returnDate}}
             </div>
             <div
               class="title"
@@ -229,7 +229,7 @@
                 "
                 >Preferred Type of Aircraft:</span
               >
-              XXXXXX
+              {{aircraftType}}
             </div>
           </div>
 
@@ -265,21 +265,20 @@
                 max-width: 800px;
               "
             >
-              Experience the extraordinary as our private fleet services grant
-              your wishes, effortlessly unveiling the gateway to a phenomenal
-              world.
+            {{comment}}
             </div>
           </div>
         </div>
       </div>
     </div>
+    {% if is_email%}
     <!-- Action Buttons -->
     <div
       class="btns"
       style="width: 100%; margin: 40px auto 0px; text-align: center"
     >
       <a
-        href="#"
+        href="{{download_link}}"
         style="
           color: #bda55d;
           font-size: 16px;
@@ -293,5 +292,6 @@
         ><span>+ Download Form</span></a
       >
     </div>
+    {% endif %}
   </body>
 </html>
