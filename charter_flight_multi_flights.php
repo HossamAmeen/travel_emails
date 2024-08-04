@@ -15,7 +15,7 @@ $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader, [
     // 'cache' => __DIR__ . '/cache',
 ]);
-$file_name = "charter flight multi flights";
+$file_name = "charter_flight_multi_flights";
 $user_name = $_POST['name'];
 $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 
