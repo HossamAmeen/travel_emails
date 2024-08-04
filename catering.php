@@ -11,14 +11,14 @@ $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader, [
     // 'cache' => __DIR__ . '/cache',
 ]);
-$file_name = "vip_catering";
+$file_name = "catering";
 $user_name = $_POST['operatorName'];
 $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 
 $_POST['today'] = $today;
 $_POST['is_email'] = False;
 
-$template_data =  $twig->render('vip_catering.html.twig', $_POST);
+$template_data =  $twig->render('catering.html.twig', $_POST);
 
 if (!is_dir("uploads")) {
     mkdir("uploads", 0777, true);
@@ -46,9 +46,9 @@ $downloadLink = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $pdf_path;
 $_POST['download_link'] = $downloadLink;
 $_POST['is_email'] = True;
 
-$template_data =  $twig->render('vip_catering.html.twig', $_POST);
+$template_data =  $twig->render('catering.html.twig', $_POST);
 
-send_email('vip catering', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
+send_email('catering', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
 
 
 ?>
