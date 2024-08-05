@@ -286,7 +286,7 @@
               {{flighPurpose}}
             </div>
           </div>
-
+          {% if is_email%}
           <div class="pdf-section" style="margin-top: 30px">
             <div class="header-section" style="margin-top: 30px">
               <span
@@ -468,7 +468,7 @@
               ></div>
             </div>
           </div>
-
+          {% endif %}
           <hr
             style="
               border-color: #bda55d;
@@ -673,7 +673,7 @@
               </div>
             </div>
             
-  
+            {% if is_email%}
             <div class="pdf-section">
               <div class="header-section" style="margin-top: 30px">
                 <span
@@ -769,6 +769,7 @@
                 </div>
               </div>
             </div>
+            {% endif %}
           </div>
           {% endfor %}
           <!-- Comment -->
@@ -828,7 +829,7 @@
         ><span>+ Download Form</span></a
       >
       <a
-      href="{{download_link}}"
+      href="{{zipFileName}}"
       style="
         color: #bda55d;
         font-size: 16px;
