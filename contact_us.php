@@ -60,6 +60,7 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
 // // send_email('contract us', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, 'contract us', $name);
 // send_email('contract us', 'AbdooTawfeek@gmail.com', $htmlContent, $pdf_content, 'contract us', $name);
+$today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 
 $_POST['today'] = $today;
 $_POST['is_email'] = False;
@@ -100,6 +101,6 @@ $downloadLink = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $pdf_path;
 $_POST['download_link'] = $downloadLink;
 $_POST['is_email'] = True;
 
-send_email('contract us', 'AbdooTawfeek@gmail.com', $template_data, $template_data, 'contract_us', $name);
+send_email('contract us', 'AbdooTawfeek@gmail.com', $template_data, $template_data, 'contract_us', $user_name);
 
 ?>
