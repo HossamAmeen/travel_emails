@@ -61,6 +61,7 @@ try {
     $mail->Body = $body;
 
     $mail->addCC('hosamameen948@gmail.com', 'CC Recipient');
+    $mail->addCC('mahmoudyasser11548@gmail.com', 'CC Recipient');
     $mail->SMTPOptions = array(
     'ssl' => array(
         'verify_peer' => false,

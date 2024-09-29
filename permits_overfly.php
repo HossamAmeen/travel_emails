@@ -11,6 +11,18 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 
+// foreach ($_POST['sectors'] as $key => $sector) {
+//     echo $key;
+//     $_POST['sectors'][$key]['new_key'] = 'new_value'; 
+// }
+
+
+// foreach($_POST['sectors'] as $item){
+//     print_r($item);
+//     exit();
+// }
+// exit();
+
 function upload_file($upload_name, $file){
         $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
         if(move_uploaded_file($file['tmp_name'], $path)) {
@@ -94,16 +106,30 @@ if (isset($_FILES['radioLicense'])) {
     return;
 }
 
-// print_r($_FILES['sectors']['name'][0]);
-// // $_POST['radioLicense']  = upload_file('test', $_FILES['crewDocument']);
-// foreach ($_FILES['crewDocument'] as $value) {
-//     // print($value['crewDocument']);
-//     // print_r($_FILES);
-//     $_POST['radioLicense']  = upload_file('test', $value);
-//     // print($value);
-//     // return;
-//     // echo "Index: $index, Value: $value<br>";
-// }
+$files = [$_POST['certInsurance'], $_POST['airworthiness'], $_POST['noise'],
+          $_POST['certRegistration'] , $_POST['radioLicense']];
+
+# store sectors files
+$file_ary = array();
+$file_count = count($_FILES['sectors']['name']);
+$file_keys = array_keys($_FILES['sectors']);
+for ($i=0; $i<$file_count; $i++) {
+    $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $_FILES['sectors']['name'][$i]['crewDocument']; 
+    if(move_uploaded_file($_FILES['sectors']['tmp_name'][$i]['crewDocument'], $path)) {
+        array_push($files, $path);
+        $_POST['sectors'][$i]['crewDocument'] = $path; 
+    }else{
+        echo $_FILES['sectors']['error'][$i]['crewDocument'];
+    }
+
+    $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $_FILES['sectors']['name'][$i]['groundHandling']; 
+    if(move_uploaded_file($_FILES['sectors']['tmp_name'][$i]['groundHandling'], $path)) {
+        array_push($files, $path);
+        $_POST['sectors'][$i]['groundHandling'] = $path; 
+    }else{
+        echo $_FILES['sectors']['error'][$i]['groundHandling'];
+    }
+}
 
 
 // Create a Twig environment
@@ -126,8 +152,7 @@ $mpdf->WriteHTML($template_data);
 $pdf_path = "uploads/" . $file_name . $user_name  . '_' . date('Ymd_His'). '.pdf';
 $mpdf->Output($pdf_path, 'F'); 
 
-$files = [$_POST['certInsurance'], $_POST['airworthiness'], $_POST['noise'],
-          $_POST['certRegistration'] , $_POST['radioLicense']];
+
 $zipFileName = "uploads/zips/" . $file_name . "_" . $user_name . "_" .  date('Ymd_His') . '.zip';
 
 $zip = new ZipArchive();
@@ -142,7 +167,10 @@ foreach ($files as $file) {
     if (file_exists($file)) {
         $zip->addFile($file, ($file));
     } else {
-        exit("File $file does not exist\n");
+        http_response_code(400);
+        $response['message'] = "File $file does not exist\n";
+        json_encode($response);
+        exit(json_encode(($response)));
     }
 }
 
