@@ -22,8 +22,6 @@ function upload_file($upload_name, $file){
             echo json_encode($response);
             return;
         }
-        
-    
 }
 
 $file_name = "permits_overfly";
