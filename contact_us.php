@@ -70,7 +70,7 @@ $twig = new Environment($loader, [
     // 'cache' => __DIR__ . '/cache',
 ]);
 
-$template_data =  $twig->render('permits_landing.html.twig', $_POST);
+$template_data =  $twig->render('contact_us.html.twig', $_POST);
 
 $file_name = "contract_us";
 $user_name = $_POST['name'];
