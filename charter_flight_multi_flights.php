@@ -52,7 +52,7 @@ $_POST['is_email'] = True;
 
 $template_data =  $twig->render('charter_flight_multi_flights.html.twig', $_POST);
 
-send_email('charter flight multi flights', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
+send_email('charter flight multi flights', 'Ops@whitecloudsaviation.com' , $template_data, $template_data, $file_name, $user_name);
 
 
 ?>

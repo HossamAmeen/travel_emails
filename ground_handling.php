@@ -313,7 +313,7 @@ $htmlContent = str_replace('{{downloadLink}}', $downloadLink, $htmlContent);
 $htmlContent = str_replace('{{today}}', $today, $htmlContent);
 
 // send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
-send_email('Ground handling', 'AbdooTawfeek@gmail.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
+send_email('Ground handling', 'Ops@whitecloudsaviation.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
     
 
 ?>

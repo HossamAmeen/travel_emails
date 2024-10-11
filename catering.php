@@ -52,7 +52,7 @@ $_POST['is_email'] = True;
 
 $template_data =  $twig->render('catering.html.twig', $_POST);
 
-send_email('catering', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
+send_email('catering', 'Ops@whitecloudsaviation.com' , $template_data, $template_data, $file_name, $user_name);
 
 
 ?>

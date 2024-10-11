@@ -167,7 +167,7 @@ $_POST['is_email'] = True;
 
 $template_data =  $twig->render('permits_landing.html.twig', $_POST);
 
-send_email('permits landing', 'AbdooTawfeek@gmail.com' , $template_data, $template_data, $file_name, $user_name);
+send_email('permits landing', 'Ops@whitecloudsaviation.com' , $template_data, $template_data, $file_name, $user_name);
 
 
 ?>

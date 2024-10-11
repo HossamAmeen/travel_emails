@@ -61,7 +61,7 @@ $file_name = "Ground_handling";
 
 
 // send_email('Transportation', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $travelerName);
-send_email('Transportation', 'AbdooTawfeek@gmail.com', $htmlContent, $pdf_content, $file_name, $travelerName);
+send_email('Transportation', 'Ops@whitecloudsaviation.com', $htmlContent, $pdf_content, $file_name, $travelerName);
 
     
 
