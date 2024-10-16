@@ -53,6 +53,6 @@ $user_name = $_POST['name'];
 // $_POST['is_email'] = True;
 // $template_data =  $twig->render('contact_us.html.twig', $_POST);
 
-send_email('contract us', 'Ops@whitecloudsaviation.com', $template_data, $template_data, 'contract_us', $user_name);
+// send_email('contract us', 'Ops@whitecloudsaviation.com', $template_data, $template_data, 'contract_us', $user_name);
 
 ?>
