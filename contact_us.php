@@ -3,8 +3,8 @@ require 'vendor/autoload.php';
 require 'send_email.php';
 require 'allow_cors.php';
 
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+// use Twig\Environment;
+// use Twig\Loader\FilesystemLoader;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -15,13 +15,14 @@ $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 $_POST['today'] = $today;
 $_POST['is_email'] = False;
 
-$loader = new FilesystemLoader(__DIR__ . '/templates');
-$twig = new Environment($loader, [
-    'cache' => __DIR__ . '/cache',
-]);
+// $loader = new FilesystemLoader(__DIR__ . '/templates');
+// $twig = new Environment($loader, [
+//     'cache' => __DIR__ . '/cache',
+// ]);
 
-$template_data =  $twig->render('contact_us.html.twig', $_POST);
+// $template_data =  $twig->render('contact_us.html.twig', $_POST);
 
+$template_data = "<h1>test</h1>";
 $file_name = "contract_us";
 $user_name = $_POST['name'];
 
