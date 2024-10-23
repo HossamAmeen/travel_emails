@@ -18,7 +18,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
         $mail->Username   = 'learn@aboadam-used.com';
         $mail->Password   = 'f~COLZ4UaKe';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
+        $mail->Port       = 587;
 
         // Recipients
         $mail->setFrom('learn@aboadam-used.com', 'Sender Name');
