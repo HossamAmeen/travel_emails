@@ -13,7 +13,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
     try {
 
         $mail->isSMTP();
-        $mail->Host       = 'smtp.aboadam-used.com';
+        $mail->Host       = 'aboadam-used.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'learn@aboadam-used.com';
         $mail->Password   = 'f~COLZ4UaKe';
