@@ -45,6 +45,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
         echo json_encode($response);
             return;
     } catch (Exception $e) {
+        http_response_code(400);
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
