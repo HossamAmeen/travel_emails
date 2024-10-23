@@ -16,7 +16,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
         $mail->Host       = 'smtp.aboadam-used.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'learn@aboadam-used.com';
-        $mail->Password   = '5~;CG6r[U2Jb';
+        $mail->Password   = 'f~COLZ4UaKe';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
