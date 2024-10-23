@@ -13,15 +13,15 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
     try {
 
         $mail->isSMTP();
-        $mail->Host       = 'smtp.egypal.fr';
+        $mail->Host       = 'smtp.aboadam-used.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'learn@egypal.fr';
+        $mail->Username   = 'learn@aboadam-used.com';
         $mail->Password   = '5~;CG6r[U2Jb';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
         // Recipients
-        $mail->setFrom('learn@egypal.fr', 'Sender Name');
+        $mail->setFrom('learn@aboadam-used.com', 'Sender Name');
         $mail->addAddress($reciever, 'Recipient Name');
 
         $mail->isHTML(true);  // Set email format to HTML
