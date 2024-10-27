@@ -96,17 +96,14 @@ if (isset($_FILES['radioLicense'])) {
     return;
 }
 
-// print_r($_FILES['sectors']['name'][0]);
-// // $_POST['radioLicense']  = upload_file('test', $_FILES['crewDocument']);
-// foreach ($_FILES['crewDocument'] as $value) {
-//     // print($value['crewDocument']);
-//     // print_r($_FILES);
-//     $_POST['radioLicense']  = upload_file('test', $value);
-//     // print($value);
-//     // return;
-//     // echo "Index: $index, Value: $value<br>";
-// }
+$baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
 
+for ($i=0; $i < count($_FILES['sectors']['name']); $i++) { 
+    if(move_uploaded_file( $_FILES['sectors']['tmp_name'][$i]['crewDocument'], 'uploads/'.$_FILES['sectors']['name'][$i]['crewDocument']))
+        $_POST['sectors'][$i]['crewDocument'] = $baseUrl.'uploads/' . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['crewDocument'];
+    if(move_uploaded_file( $_FILES['sectors']['tmp_name'][$i]['groundHandling'], 'uploads/'.$_FILES['sectors']['name'][$i]['groundHandling']))
+        $_POST['sectors'][$i]['groundHandling'] = $baseUrl . 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['groundHandling'];
+}
 
 // Create a Twig environment
 $loader = new FilesystemLoader(__DIR__ . '/templates');
