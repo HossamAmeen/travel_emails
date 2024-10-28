@@ -12,7 +12,7 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
 $response = [];
 
-$travelerName = filter_input(INPUT_POST, 'travelerName', FILTER_SANITIZE_STRING);
+$travelerName = $_POST['travelerName'];
 
 if ($travelerName && !empty($travelerName)) {
         $response['status'] = 'success';
@@ -31,15 +31,16 @@ if ($htmlContent === false) {
     die('Failed to read email template file.');
 }
 
-$travelerContactNumber = filter_input(INPUT_POST, 'travelerContactNumber', FILTER_SANITIZE_STRING);
-$aircraftRegistration = filter_input(INPUT_POST, 'aircraftRegistration', FILTER_SANITIZE_STRING);
-$flightCallSign = filter_input(INPUT_POST, 'flightCallSign', FILTER_SANITIZE_STRING);
-$pickupLocation = filter_input(INPUT_POST, 'pickupLocation', FILTER_SANITIZE_STRING);
-$dropOffLocation = filter_input(INPUT_POST, 'dropOffLocation', FILTER_SANITIZE_STRING);
-$pickupDateTime = filter_input(INPUT_POST, 'pickupDateTime', FILTER_SANITIZE_STRING);
-$carType = filter_input(INPUT_POST, 'carType', FILTER_SANITIZE_STRING);
-$comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
+$travelerContactNumber = $_POST['travelerContactNumber'];
+$aircraftRegistration = $_POST['aircraftRegistration'];
+$flightCallSign = $_POST['flightCallSign'];
+$pickupLocation = $_POST['pickupLocation'];
+$dropOffLocation = $_POST['dropOffLocation'];
+$pickupDateTime = $_POST['pickupDateTime'];
+$carType = $_POST['carType'];
+$comment = $_POST['comment'];
 
+$today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 
 $htmlContent = str_replace('{{today}}', $today, $htmlContent);
 $htmlContent = str_replace('{{travelerName}}', $travelerName, $htmlContent);
