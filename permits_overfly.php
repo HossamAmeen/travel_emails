@@ -120,7 +120,7 @@ for ($i=0; $i<$file_count; $i++) {
     $path =  'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $_FILES['sectors']['name'][$i]['crewDocument']; 
     if(move_uploaded_file($_FILES['sectors']['tmp_name'][$i]['crewDocument'], $path)) {
         array_push($files, $baseUrl.$path);
-        $_POST['sectors'][$i]['crewDocument'] = $path; 
+        $_POST['sectors'][$i]['crewDocument'] = $baseUrl.$path; 
     }else{
         echo $_FILES['sectors']['error'][$i]['crewDocument'];
     }
