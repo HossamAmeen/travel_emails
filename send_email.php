@@ -8,7 +8,7 @@ require 'vendor/autoload.php';
 header("Content-Type: application/json");
 
 
-function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_name="test"){
+function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_name="Sender Name"){
     $mail = new PHPMailer(true);
     try {
 
@@ -21,7 +21,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
         $mail->Port       = 465;
 
         // Recipients
-        $mail->setFrom('learn@aboadam-used.com', 'Sender Name');
+        $mail->setFrom('learn@aboadam-used.com', $user_name);
         $mail->addAddress($reciever, 'Recipient Name');
 
         $mail->isHTML(true);  // Set email format to HTML
