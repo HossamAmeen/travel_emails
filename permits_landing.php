@@ -101,7 +101,7 @@ $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_
 for ($i=0; $i < count($_FILES['sectors']['name']); $i++) {
     $crew_document_name = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['crewDocument'];
     if(move_uploaded_file( $_FILES['sectors']['tmp_name'][$i]['crewDocument'], $crew_document_name))
-        $_POST['sectors'][$i]['crewDocument'] = $baseUrl.'uploads/' . $crew_document_name;
+        $_POST['sectors'][$i]['crewDocument'] = $baseUrl . $crew_document_name;
     
     $ground_handling_name = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['groundHandling'];
     if(move_uploaded_file( $_FILES['sectors']['tmp_name'][$i]['groundHandling'], $ground_handling_name))
