@@ -138,7 +138,7 @@ for ($i=0; $i<$file_count; $i++) {
 // Create a Twig environment
 $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader, [
-    // 'cache' => __DIR__ . '/cache',
+    'cache' => __DIR__ . '/cache',
 ]);
 
 $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
