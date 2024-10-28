@@ -51,14 +51,19 @@ $comment = $_POST['comment'];
 
 $file_name = "ground_handling";
 
-$file_name = strtolower($file_name);
-if (!is_dir($file_name)) {
-    mkdir($file_name, 0777, true);
+
+if (!is_dir("uploads")) {
+  mkdir("uploads", 0777, true);
+}
+
+
+if (!is_dir("uploads/" . $file_name)) {
+  mkdir("uploads/" . $file_name, 0777, true);
 }
     
 $user_name = strtolower($operatorName);
-if (!is_dir($file_name . '/' .$user_name)) {
-    mkdir($file_name . '/' . $user_name, 0777, true);
+if (!is_dir("uploads/" . $file_name . '/' .$user_name)) {
+    mkdir("uploads/" . $file_name . '/' . $user_name, 0777, true);
 }
 
 $lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
@@ -66,7 +71,7 @@ $baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
 
 if (isset($_FILES['fuelRelease'])) {
     $fuel_release_file = $_FILES['fuelRelease'];
-    $fuel_dest_path = $file_name . '/' . $user_name . '/' . date('Ymd_His')  . rand(1,10) . "_" . $fuel_release_file['name']; 
+    $fuel_dest_path = "uploads/" . $file_name . '/' . $user_name . '/' . date('Ymd_His')  . rand(1,10) . "_" . $fuel_release_file['name']; 
     if(move_uploaded_file($fuel_release_file['tmp_name'], $fuel_dest_path)) {
         $fuelRelease = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $fuel_dest_path;
     }else{
@@ -87,7 +92,7 @@ if (isset($_FILES['fuelRelease'])) {
 
 if (isset($_FILES['crewDocument']) && $_FILES['crewDocument']['error'] == 0) {
     $crew_document_file = $_FILES['crewDocument'];
-    $crew_document_file_dest_path = $file_name . '/' . $user_name . '/' . date('Ymd_His') . rand(1,10) . "_" . $crew_document_file['name']; 
+    $crew_document_file_dest_path =  "uploads/" . $file_name . '/' . $user_name . '/' . date('Ymd_His') . rand(1,10) . "_" . $crew_document_file['name']; 
     if(move_uploaded_file($crew_document_file['tmp_name'], $crew_document_file_dest_path)) {
         $crewDocument = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $crew_document_file_dest_path;
     }else{
@@ -256,16 +261,10 @@ $pdf_content = str_replace('{{today}}', $today, $pdf_content);
 $mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
 $mpdf->WriteHTML($pdf_content);
 
-$file_name = strtolower($file_name);
-if (!is_dir($file_name)) {
-    mkdir($file_name, 0777, true);
-}
 
-$user_name = strtolower($user_name);
-if (!is_dir($file_name . '/' .$user_name)) {
-    mkdir($file_name . '/' . $user_name, 0777, true);
-}
-$pdf_path = $file_name. '/' . $user_name . '/' . $file_name . '_' . date('Ymd_His'). '.pdf';
+
+
+$pdf_path = "uploads/" . $file_name. '/' . $user_name . '/' . $file_name . '_' . date('Ymd_His'). '.pdf';
 $mpdf->Output($pdf_path, 'F'); 
 
 $lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');

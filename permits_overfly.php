@@ -111,14 +111,6 @@ for ($i=0; $i<$file_count; $i++) {
     }else{
         echo $_FILES['sectors']['error'][$i]['crewDocument'];
     }
-
-    $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $_FILES['sectors']['name'][$i]['groundHandling']; 
-    if(move_uploaded_file($_FILES['sectors']['tmp_name'][$i]['groundHandling'], $path)) {
-        array_push($files, $path);
-        $_POST['sectors'][$i]['groundHandling'] = $path; 
-    }else{
-        echo $_FILES['sectors']['error'][$i]['groundHandling'];
-    }
 }
 
 
