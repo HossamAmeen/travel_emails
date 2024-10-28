@@ -109,12 +109,15 @@ if (isset($_FILES['radioLicense'])) {
 $files = [$_POST['certInsurance'], $_POST['airworthiness'], $_POST['noise'],
           $_POST['certRegistration'] , $_POST['radioLicense']];
 
+
+$baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
+
 # store sectors files
 $file_ary = array();
 $file_count = count($_FILES['sectors']['name']);
 $file_keys = array_keys($_FILES['sectors']);
 for ($i=0; $i<$file_count; $i++) {
-    $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $_FILES['sectors']['name'][$i]['crewDocument']; 
+    $path = $baseUrl. 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $_FILES['sectors']['name'][$i]['crewDocument']; 
     if(move_uploaded_file($_FILES['sectors']['tmp_name'][$i]['crewDocument'], $path)) {
         array_push($files, $path);
         $_POST['sectors'][$i]['crewDocument'] = $path; 
