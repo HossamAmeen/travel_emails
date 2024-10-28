@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 
 $response = [];
 
-$operatorName = filter_input(INPUT_POST, 'operatorName', FILTER_SANITIZE_STRING);
+$operatorName = $_POST['operatorName'];
 
 if ($operatorName && !empty($operatorName)) {
         $response['status'] = 'success';
@@ -41,13 +41,13 @@ if ($pdf_content === false) {
 
 
 
-$operatorEmail = filter_input(INPUT_POST, 'operatorEmail', FILTER_SANITIZE_STRING);
-$operatorPhone = filter_input(INPUT_POST, 'operatorPhone', FILTER_SANITIZE_STRING);
-$operatorWebsite = filter_input(INPUT_POST, 'operatorWebsite', FILTER_SANITIZE_STRING);
-$aircraftRegistration = filter_input(INPUT_POST, 'aircraftRegistration', FILTER_SANITIZE_STRING);
-$flightCallSign = filter_input(INPUT_POST, 'flightCallSign', FILTER_SANITIZE_STRING);
-$aircraftType = filter_input(INPUT_POST, 'aircraftType', FILTER_SANITIZE_STRING);
-$comment = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
+$operatorEmail = $_POST['operatorEmail'];
+$operatorPhone = $_POST['operatorPhone'];
+$operatorWebsite = $_POST['operatorWebsite'];
+$aircraftRegistration = $_POST['aircraftRegistration'];
+$flightCallSign = $_POST['flightCallSign'];
+$aircraftType = $_POST['aircraftType'];
+$comment = $_POST['comment'];
 
 $file_name = "ground_handling";
 
@@ -312,7 +312,6 @@ $htmlContent = str_replace('{{zip_url}}', $zipFileName, $htmlContent);
 $htmlContent = str_replace('{{downloadLink}}', $downloadLink, $htmlContent);
 $htmlContent = str_replace('{{today}}', $today, $htmlContent);
 
-// send_email('Ground handling', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $operatorName);
 send_email('Ground handling', 'Ops@whitecloudsaviation.com' , $htmlContent, $pdf_content, $file_name, $operatorName);
     
 

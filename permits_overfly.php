@@ -10,19 +10,6 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-
-// foreach ($_POST['sectors'] as $key => $sector) {
-//     echo $key;
-//     $_POST['sectors'][$key]['new_key'] = 'new_value'; 
-// }
-
-
-// foreach($_POST['sectors'] as $item){
-//     print_r($item);
-//     exit();
-// }
-// exit();
-
 function upload_file($upload_name, $file){
         $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
         if(move_uploaded_file($file['tmp_name'], $path)) {
