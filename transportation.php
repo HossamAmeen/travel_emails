@@ -1,69 +1,57 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 require 'vendor/autoload.php';
 require 'send_email.php';
 require 'allow_cors.php';
+
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
-$response = [];
-
-$travelerName = $_POST['travelerName'];
-
-if ($travelerName && !empty($travelerName)) {
-        $response['status'] = 'success';
-        $response['message'] = 'Name received.';
-    } else {
-         http_response_code(400); 
-        $response['status'] = 'error';
-        $response['message'] = 'travelerName is required and cannot be empty.';
-        echo json_encode($response);
-        return;
-    }
-
-$templateFile = 'transportation.html';
-$htmlContent = file_get_contents($templateFile);
-if ($htmlContent === false) {
-    die('Failed to read email template file.');
-}
-
-$travelerContactNumber = $_POST['travelerContactNumber'];
-$aircraftRegistration = $_POST['aircraftRegistration'];
-$flightCallSign = $_POST['flightCallSign'];
-$pickupLocation = $_POST['pickupLocation'];
-$dropOffLocation = $_POST['dropOffLocation'];
-$pickupDateTime = $_POST['pickupDateTime'];
-$carType = $_POST['carType'];
-$comment = $_POST['comment'];
-
 $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 
-$htmlContent = str_replace('{{today}}', $today, $htmlContent);
-$htmlContent = str_replace('{{travelerName}}', $travelerName, $htmlContent);
-$htmlContent = str_replace('{{travelerContactNumber}}', $travelerContactNumber, $htmlContent);
-$htmlContent = str_replace('{{aircraftRegistration}}', $aircraftRegistration, $htmlContent);
-$htmlContent = str_replace('{{flightCallSign}}', $flightCallSign, $htmlContent);
-$htmlContent = str_replace('{{pickupLocation}}', $pickupLocation, $htmlContent);
-$htmlContent = str_replace('{{dropOffLocation}}', $dropOffLocation, $htmlContent);
-$htmlContent = str_replace('{{pickupDateTime}}', $pickupDateTime, $htmlContent);
-$htmlContent = str_replace('{{carType}}', $carType, $htmlContent);
-$htmlContent = str_replace('{{comment}}', $comment, $htmlContent);
+$_POST['today'] = $today;
+$_POST['is_email'] = False;
+
+$loader = new FilesystemLoader(__DIR__ . '/templates');
+$twig = new Environment($loader, [
+    'cache' => __DIR__ . '/cache',
+]);
+
+$template_data =  $twig->render('transportation.html.twig', $_POST);
+
+$file_name = "transportation";
+$user_name = $_POST['travelerName'];
+
+if (!is_dir("uploads")) {
+    mkdir("uploads", 0777, true);
+}
+
+if (!is_dir("uploads/" . $file_name)) {
+    mkdir("uploads/" . $file_name, 0777, true);
+}
+
+$user_name = strtolower($user_name);
+if (!is_dir("uploads/" . $file_name . '/' . $user_name)) {
+    mkdir("uploads/" . $file_name . '/' . $user_name, 0777, true);
+}
+
+$mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
+$mpdf->WriteHTML($template_data);
+$pdf_path = "uploads/" . $file_name . $user_name  . '_' . date('Ymd_His'). '.pdf';
+$mpdf->Output($pdf_path, 'F'); 
+
+$lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
+$baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
+$downloadLink = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $pdf_path;
 
 
-$pdf_content = $htmlContent;
+$_POST['download_link'] = $downloadLink;
+$_POST['is_email'] = True;
+$template_data =  $twig->render('transportation.html.twig', $_POST);
 
-$file_name = "Ground_handling";
-
-
-
-
-// send_email('Transportation', 'hosamameen948@gmail.com', $htmlContent, $pdf_content, $file_name, $travelerName);
-send_email('Transportation', 'Ops@whitecloudsaviation.com', $htmlContent, $pdf_content, $file_name, $travelerName);
-
-    
+send_email('Transportation', 'Ops@whitecloudsaviation.com', $template_data, $template_data, 'transportation', $user_name);
 
 ?>

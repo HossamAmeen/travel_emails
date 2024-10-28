@@ -17,7 +17,7 @@ $_POST['is_email'] = False;
 
 $loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader, [
-    // 'cache' => __DIR__ . '/cache',
+    'cache' => __DIR__ . '/cache',
 ]);
 
 $template_data =  $twig->render('contact_us.html.twig', $_POST);
