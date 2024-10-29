@@ -13,15 +13,15 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
     try {
 
         $mail->isSMTP();
-        $mail->Host       = 'aboadam-used.com';
+        $mail->Host       = 'smtp.office365.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'learn@aboadam-used.com';
-        $mail->Password   = 'f~COLZ4UaKe';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port       = 465;
+        $mail->Username   = 'admin@whitecloudsaviation.com';
+        $mail->Password   = 'Admin$123123';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
 
         // Recipients
-        $mail->setFrom('learn@aboadam-used.com', $user_name);
+        $mail->setFrom('admin@whitecloudsaviation.com', $user_name);
         $mail->addAddress($reciever, 'Recipient Name');
 
         $mail->isHTML(true);  // Set email format to HTML
