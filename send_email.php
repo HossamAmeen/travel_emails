@@ -2,13 +2,25 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+use Predis\Client;
 require 'vendor/autoload.php';
 
 header("Content-Type: application/json");
 
 
-function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_name="Sender Name"){
+function send_email($subject, $reciever, $body, $pdf_body, $file_name, $user_name="Sender Name"){
+    $redis = new Client();
+    // Job data
+    $job = [
+        'type' => 'send_welcome_email',
+        'data' => [
+            'subject' => $subject,
+            "reciever" => $reciever,
+            "body" => $body
+        ]
+    ];
+    $redis->rpush('email_queue', json_encode($job));
+    return
     $mail = new PHPMailer(true);
     try {
 
@@ -25,7 +37,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
         $mail->addAddress($reciever, 'Recipient Name');
 
         $mail->isHTML(true);  // Set email format to HTML
-        $mail->Subject = $Subject;
+        $mail->subject = $subject;
 
         $mail->Body = $body;
 
