@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use Predis\Client;
 
 function processJob($job) {
@@ -9,18 +10,54 @@ function processJob($job) {
 
     // Check the type of job
     if ($job['type'] === 'send_welcome_email') {
-        $email = $job['data']['email'];
-        $title = $job['data']['title'];
-        echo $job['data']['body'];
-        sendWelcomeEmail($email, $title);
+        $subject = $job['data']['subject'];
+        $reciever = $job['data']['reciever'];
+        $body  = $job['data']['body'];
+        $user_name  = $job['data']['user_name'];
+        sendWelcomeEmail($subject, $reciever, $body, $user_name);
     }
 }
 
-function sendWelcomeEmail($email, $title="test") {
-    // Simulate sending an email
-    echo "Sending welcome email to $email\n";
-    echo $title;
-    // Here you would actually send the email using a mailer library like PHPMailer, SwiftMailer, etc.
+function sendWelcomeEmail($subject, $reciever, $body, $user_name) {
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.office365.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'admin@whitecloudsaviation.com';
+        $mail->Password   = 'Admin$123123';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        // Recipients
+        $mail->setFrom('admin@whitecloudsaviation.com', $user_name);
+        // $mail->addAddress($reciever, 'Recipient Name');
+        $mail->addAddress("hosamameen948@gmail.com", 'Recipient Name');
+        
+        $mail->isHTML(true);  // Set email format to HTML
+        $mail->Subject = $subject;
+
+        $mail->Body = $body;
+
+        $mail->addCC('hosamameen948@gmail.com', 'CC Recipient');
+        // $mail->addCC('mahmoudyasser11548@gmail.com', 'CC Recipient');
+        // $mail->addCC('AbdooTawfeek@gmail.com', 'CC Recipient');
+        $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true,
+            ),
+        );
+        $mail->send();
+        $response['status'] = 'success';
+        $response['message'] = 'Message has been sent';
+        echo json_encode($response);
+        return;
+    } catch (Exception $e) {
+        http_response_code(400);
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 
 }
 
