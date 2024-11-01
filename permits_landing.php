@@ -12,6 +12,7 @@ use Twig\Loader\FilesystemLoader;
 
 
 function upload_file($upload_name, $file){
+        return "test";
         $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
         if(move_uploaded_file($file['tmp_name'], $path)) {
             return $path;
@@ -146,6 +147,7 @@ foreach ($files as $file) {
     if (file_exists($file)) {
         $zip->addFile($file, ($file));
     } else {
+        continue;
         exit("File $file does not exist\n");
     }
 }
