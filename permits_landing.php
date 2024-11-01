@@ -126,11 +126,11 @@ $_POST['is_email'] = False;
 $template_data =  $twig->render('permits_landing.html.twig', $_POST);
 
 
-$mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
-$mpdf->WriteHTML($template_data);
+// $mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
+// $mpdf->WriteHTML($template_data);
 
 $pdf_path = "uploads/" . $file_name . $user_name  . '_' . date('Ymd_His'). '.pdf';
-$mpdf->Output($pdf_path, 'F'); 
+// $mpdf->Output($pdf_path, 'F'); 
 
 
 $zipFileName = "uploads/zips/" . $file_name . "_" . $user_name . "_" .  date('Ymd_His') . '.zip';
