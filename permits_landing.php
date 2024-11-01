@@ -143,14 +143,14 @@ if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRU
 array_push($files, $pdf_path);
 
 // Add files to the zip archive
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        $zip->addFile($file, ($file));
-    } else {
-        continue;
-        exit("File $file does not exist\n");
-    }
-}
+// foreach ($files as $file) {
+//     if (file_exists($file)) {
+//         $zip->addFile($file, ($file));
+//     } else {
+//         continue;
+//         exit("File $file does not exist\n");
+//     }
+// }
 
 $zip->close();
 
