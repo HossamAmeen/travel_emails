@@ -51,7 +51,7 @@ function sendWelcomeEmail($subject, $reciever, $body, $user_name) {
         );
         $mail->send();
         $response['status'] = 'success';
-        $response['message'] = 'Message has been sent';
+        $response['message'] = "Message has been sent ({$subject})";
         echo json_encode($response);
         return;
     } catch (Exception $e) {
