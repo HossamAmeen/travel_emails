@@ -12,7 +12,6 @@ use Twig\Loader\FilesystemLoader;
 
 
 function upload_file($upload_name, $file){
-        return "test";
         $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
         if(move_uploaded_file($file['tmp_name'], $path)) {
             return $path;
@@ -21,7 +20,7 @@ function upload_file($upload_name, $file){
             $response['status'] = 'error';
             $response['message'] = 'there is issue with ' .  $upload_name . ' ' . $file['error'];
             echo json_encode($response);
-            // return;
+            return;
         }
         
     
@@ -54,7 +53,7 @@ if (isset($_FILES['certInsurance'])) {
     $response['status'] = 'error';
     $response['message'] = 'certInsurance is required and should be file.';
     echo json_encode($response);
-    // return;
+    return;
 }
 
 if (isset($_FILES['airworthiness'])) {
@@ -64,7 +63,7 @@ if (isset($_FILES['airworthiness'])) {
     $response['status'] = 'error';
     $response['message'] = 'airworthiness is required and should be file.';
     echo json_encode($response);
-    // return;
+    return;
 }
 
 if (isset($_FILES['noise'])) {
@@ -74,7 +73,7 @@ if (isset($_FILES['noise'])) {
     $response['status'] = 'error';
     $response['message'] = 'noise is required and should be file.';
     echo json_encode($response);
-    // return;
+    return;
 }
 
 if (isset($_FILES['certRegistration'])) {
@@ -84,7 +83,7 @@ if (isset($_FILES['certRegistration'])) {
     $response['status'] = 'error';
     $response['message'] = 'certRegistration is required and should be file.';
     echo json_encode($response);
-    // return;
+    return;
 }
 
 if (isset($_FILES['radioLicense'])) {
@@ -94,7 +93,7 @@ if (isset($_FILES['radioLicense'])) {
     $response['status'] = 'error';
     $response['message'] = 'radioLicense is required and should be file.';
     echo json_encode($response);
-    // return;
+    return;
 }
 
 $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
@@ -126,33 +125,32 @@ $_POST['is_email'] = False;
 $template_data =  $twig->render('permits_landing.html.twig', $_POST);
 
 
-// $mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
-// $mpdf->WriteHTML($template_data);
+$mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
+$mpdf->WriteHTML($template_data);
 
 $pdf_path = "uploads/" . $file_name . $user_name  . '_' . date('Ymd_His'). '.pdf';
-// $mpdf->Output($pdf_path, 'F'); 
+$mpdf->Output($pdf_path, 'F'); 
 
 
 $zipFileName = "uploads/zips/" . $file_name . "_" . $user_name . "_" .  date('Ymd_His') . '.zip';
 
-// $zip = new ZipArchive();
-// if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
-//     exit("Unable to create zip file $zipFileName\n");
-// }
+$zip = new ZipArchive();
+if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
+    exit("Unable to create zip file $zipFileName\n");
+}
 
-// array_push($files, $pdf_path);
+array_push($files, $pdf_path);
 
-// // Add files to the zip archive
-// foreach ($files as $file) {
-//     if (file_exists($file)) {
-//         $zip->addFile($file, ($file));
-//     } else {
-//         continue;
-//         exit("File $file does not exist\n");
-//     }
-// }
+// Add files to the zip archive
+foreach ($files as $file) {
+    if (file_exists($file)) {
+        $zip->addFile($file, ($file));
+    } else {
+        exit("File $file does not exist\n");
+    }
+}
 
-// $zip->close();
+$zip->close();
 
 $lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
 $baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
