@@ -21,7 +21,7 @@ function upload_file($upload_name, $file){
             $response['status'] = 'error';
             $response['message'] = 'there is issue with ' .  $upload_name . ' ' . $file['error'];
             echo json_encode($response);
-            return;
+            // return;
         }
         
     
@@ -54,7 +54,7 @@ if (isset($_FILES['certInsurance'])) {
     $response['status'] = 'error';
     $response['message'] = 'certInsurance is required and should be file.';
     echo json_encode($response);
-    return;
+    // return;
 }
 
 if (isset($_FILES['airworthiness'])) {
@@ -64,7 +64,7 @@ if (isset($_FILES['airworthiness'])) {
     $response['status'] = 'error';
     $response['message'] = 'airworthiness is required and should be file.';
     echo json_encode($response);
-    return;
+    // return;
 }
 
 if (isset($_FILES['noise'])) {
@@ -74,7 +74,7 @@ if (isset($_FILES['noise'])) {
     $response['status'] = 'error';
     $response['message'] = 'noise is required and should be file.';
     echo json_encode($response);
-    return;
+    // return;
 }
 
 if (isset($_FILES['certRegistration'])) {
@@ -84,7 +84,7 @@ if (isset($_FILES['certRegistration'])) {
     $response['status'] = 'error';
     $response['message'] = 'certRegistration is required and should be file.';
     echo json_encode($response);
-    return;
+    // return;
 }
 
 if (isset($_FILES['radioLicense'])) {
@@ -94,7 +94,7 @@ if (isset($_FILES['radioLicense'])) {
     $response['status'] = 'error';
     $response['message'] = 'radioLicense is required and should be file.';
     echo json_encode($response);
-    return;
+    // return;
 }
 
 $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
