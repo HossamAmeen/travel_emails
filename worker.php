@@ -70,7 +70,7 @@ try {
 
     while (true) {
         // Try to pop a job from the list
-        $job = $redis->pop('email_queue');
+        $job = $redis->rpop('email_queue');
 
         if ($job) {
             // Process the job if available
