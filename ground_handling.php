@@ -77,7 +77,7 @@ if (isset($_FILES['fuelRelease'])) {
     }else{
         http_response_code(400); 
         $response['status'] = 'error';
-        $response['message'] = 'there is issue with fuelRelease .';
+        $response['message'] = 'fuelRelease is required and should be file.' . $_FILES['fuelRelease']['error'];
         echo json_encode($response);
         return;
     }
@@ -85,7 +85,7 @@ if (isset($_FILES['fuelRelease'])) {
 }else{
     http_response_code(400); 
     $response['status'] = 'error';
-    $response['message'] = 'fuelRelease is required and should be file.' . $_FILES['fuelRelease']['error'];
+    $response['message'] = 'fuelRelease is required and should be file.';
     echo json_encode($response);
     return;
 }

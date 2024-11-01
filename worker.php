@@ -61,15 +61,25 @@ function sendWelcomeEmail($subject, $reciever, $body, $user_name) {
 
 }
 
-$redis = new Client();
+try {
+    $redis = new Client([
+        'scheme' => 'tcp',
+        'host' => '127.0.0.1',
+        'port' => 6379,
+    ]);
 
-while (true) {
-    // Block until a job is available
-    $job = $redis->blpop('email_queue', 0);
+    while (true) {
+        // Try to pop a job from the list
+        $job = $redis->blpop('email_queue');
 
-    // Process the job
-    processJob($job[1]);
-
-    // Sleep for a short time to avoid busy waiting (optional)
-    usleep(500000); // 0.5 seconds
+        if ($job) {
+            // Process the job if available
+            processJob($job);
+        } else {
+            // Sleep for a short time if no job is available
+            usleep(500000); // 0.5 seconds
+        }
+    }
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage() . "\n";
 }
