@@ -47,7 +47,7 @@ if (!is_dir('uploads/zips')) {
 }
 
 if (isset($_FILES['certInsurance'])) {
-    $_POST['certInsurance']  = upload_file('certInsurance', $_FILES['certInsurance']);
+    // $_POST['certInsurance']  = upload_file('certInsurance', $_FILES['certInsurance']);
 }else{
     http_response_code(400); 
     $response['status'] = 'error';
@@ -57,7 +57,7 @@ if (isset($_FILES['certInsurance'])) {
 }
 
 if (isset($_FILES['airworthiness'])) {
-    $_POST['airworthiness']  = upload_file('airworthiness', $_FILES['airworthiness']);
+    // $_POST['airworthiness']  = upload_file('airworthiness', $_FILES['airworthiness']);
 }else{
     http_response_code(400); 
     $response['status'] = 'error';
@@ -67,7 +67,7 @@ if (isset($_FILES['airworthiness'])) {
 }
 
 if (isset($_FILES['noise'])) {
-    $_POST['noise']  = upload_file('noise', $_FILES['noise']);
+    // $_POST['noise']  = upload_file('noise', $_FILES['noise']);
 }else{
     http_response_code(400); 
     $response['status'] = 'error';
@@ -77,7 +77,7 @@ if (isset($_FILES['noise'])) {
 }
 
 if (isset($_FILES['certRegistration'])) {
-    $_POST['certRegistration']  = upload_file('certRegistration', $_FILES['certRegistration']);
+    // $_POST['certRegistration']  = upload_file('certRegistration', $_FILES['certRegistration']);
 }else{
     http_response_code(400); 
     $response['status'] = 'error';
@@ -87,7 +87,7 @@ if (isset($_FILES['certRegistration'])) {
 }
 
 if (isset($_FILES['radioLicense'])) {
-    $_POST['radioLicense']  = upload_file('radioLicense', $_FILES['radioLicense']);
+    // $_POST['radioLicense']  = upload_file('radioLicense', $_FILES['radioLicense']);
 }else{
     http_response_code(400); 
     $response['status'] = 'error';
@@ -95,6 +95,12 @@ if (isset($_FILES['radioLicense'])) {
     echo json_encode($response);
     return;
 }
+
+$_POST['certInsurance'] = "uploads/test.txt";
+$_POST['airworthiness'] = "uploads/test.txt";
+$_POST['noise']= "uploads/test.txt";
+$_POST['certRegistration'] = "uploads/test.txt";
+$_POST['radioLicense'] = "uploads/test.txt";
 
 $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
 $files = [$_POST['certInsurance'], $_POST['airworthiness'], $_POST['noise'],
