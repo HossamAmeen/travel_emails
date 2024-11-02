@@ -134,23 +134,22 @@ $mpdf->Output($pdf_path, 'F');
 
 $zipFileName = "uploads/zips/" . $file_name . "_" . $user_name . "_" .  date('Ymd_His') . '.zip';
 
-$zip = new ZipArchive();
-if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
-    exit("Unable to create zip file $zipFileName\n");
-}
+// $zip = new ZipArchive();
+// if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
+//     exit("Unable to create zip file $zipFileName\n");
+// }
 
-array_push($files, $pdf_path);
+// array_push($files, $pdf_path);
 
-// Add files to the zip archive
-foreach ($files as $file) {
-    if (file_exists($file)) {
-        $zip->addFile($file, ($file));
-    } else {
-        exit("File $file does not exist\n");
-    }
-}
+// foreach ($files as $file) {
+//     if (file_exists($file)) {
+//         $zip->addFile($file, ($file));
+//     } else {
+//         exit("File $file does not exist\n");
+//     }
+// }
 
-$zip->close();
+// $zip->close();
 
 $lastSlashPos = strrpos($_SERVER['REQUEST_URI'] , '/');
 $baseUrl = substr($_SERVER['REQUEST_URI'], 0, $lastSlashPos + 1);
