@@ -141,7 +141,7 @@ if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRU
 
 array_push($files, $pdf_path);
 
-Add files to the zip archive
+// Add files to the zip archive
 foreach ($files as $file) {
     if (file_exists($file)) {
         $zip->addFile($file, ($file));
