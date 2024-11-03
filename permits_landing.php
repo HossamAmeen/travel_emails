@@ -11,8 +11,12 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 
+$file_name = "permits_landing";
+
+# depercated
 function upload_file($upload_name, $file){
-        $path = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
+        $path = "uploads/$file_name" . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
+        echo $path;
         if(move_uploaded_file($file['tmp_name'], $path)) {
             return $path;
         }else{
@@ -26,7 +30,8 @@ function upload_file($upload_name, $file){
     
 }
 
-$file_name = "permits_landing.html.twig";
+
+
 $user_name = $_POST['operatorName'];
 
 if (!is_dir("uploads")) {
@@ -37,11 +42,6 @@ if (!is_dir("uploads/" . $file_name)) {
     mkdir("uploads/" . $file_name, 0777, true);
 }
 
-$user_name = strtolower($user_name);
-if (!is_dir("uploads/" . $file_name . '/' . $user_name)) {
-    mkdir("uploads/" . $file_name . '/' . $user_name, 0777, true);
-}
-
 if (!is_dir('uploads/zips')) {
     mkdir('uploads/zips', 0777, true);
 }
@@ -49,51 +49,50 @@ if (!is_dir('uploads/zips')) {
 if (isset($_FILES['certInsurance'])) {
     $_POST['certInsurance']  = upload_file('certInsurance', $_FILES['certInsurance']);
 }else{
-    http_response_code(400); 
-    $response['status'] = 'error';
-    $response['message'] = 'certInsurance is required and should be file.';
-    echo json_encode($response);
-    return;
+    $startPos = strpos($_POST['certInsurance'], "uploads");
+    if ($startPos !== false) {
+        $_POST['certInsurance'] = substr($_POST['certInsurance'], $startPos);
+    }
 }
 
 if (isset($_FILES['airworthiness'])) {
     $_POST['airworthiness']  = upload_file('airworthiness', $_FILES['airworthiness']);
 }else{
-    http_response_code(400); 
-    $response['status'] = 'error';
-    $response['message'] = 'airworthiness is required and should be file.';
-    echo json_encode($response);
-    return;
+    $startPos = strpos($_POST['airworthiness'], "uploads");
+
+    if ($startPos !== false) {
+        $_POST['airworthiness'] = substr($_POST['airworthiness'], $startPos);
+    }
 }
 
 if (isset($_FILES['noise'])) {
     $_POST['noise']  = upload_file('noise', $_FILES['noise']);
 }else{
-    http_response_code(400); 
-    $response['status'] = 'error';
-    $response['message'] = 'noise is required and should be file.';
-    echo json_encode($response);
-    return;
+    $startPos = strpos($_POST['noise'], "uploads");
+
+    if ($startPos !== false) {
+        $_POST['noise'] = substr($_POST['noise'], $startPos);
+    }
 }
 
 if (isset($_FILES['certRegistration'])) {
     $_POST['certRegistration']  = upload_file('certRegistration', $_FILES['certRegistration']);
 }else{
-    http_response_code(400); 
-    $response['status'] = 'error';
-    $response['message'] = 'certRegistration is required and should be file.';
-    echo json_encode($response);
-    return;
+    $startPos = strpos($_POST['certRegistration'], "uploads");
+
+    if ($startPos !== false) {
+        $_POST['certRegistration'] = substr($_POST['certRegistration'], $startPos);
+    }
 }
 
 if (isset($_FILES['radioLicense'])) {
     $_POST['radioLicense']  = upload_file('radioLicense', $_FILES['radioLicense']);
 }else{
-    http_response_code(400); 
-    $response['status'] = 'error';
-    $response['message'] = 'radioLicense is required and should be file.';
-    echo json_encode($response);
-    return;
+    $startPos = strpos($_POST['radioLicense'], "uploads");
+
+    if ($startPos !== false) {
+        $_POST['radioLicense'] = substr($_POST['radioLicense'], $startPos);
+    }
 }
 
 $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
@@ -101,11 +100,11 @@ $files = [$_POST['certInsurance'], $_POST['airworthiness'], $_POST['noise'],
           $_POST['certRegistration'] , $_POST['radioLicense']];
 
 for ($i=0; $i < count($_FILES['sectors']['name']); $i++) {
-    $crew_document_name = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['crewDocument'];
+    $crew_document_name = "uploads/$file_name/" . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['crewDocument'];
     if(move_uploaded_file( $_FILES['sectors']['tmp_name'][$i]['crewDocument'], $crew_document_name))
         $_POST['sectors'][$i]['crewDocument'] = $baseUrl . $crew_document_name;
         array_push($files, $crew_document_name);
-    $ground_handling_name = 'uploads/' . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['groundHandling'];
+    $ground_handling_name = "uploads/$file_name" . date('Ymd_His')  . rand(1,10) . "_" .$_FILES['sectors']['name'][$i]['groundHandling'];
     if(move_uploaded_file( $_FILES['sectors']['tmp_name'][$i]['groundHandling'], $ground_handling_name))
         $_POST['sectors'][$i]['groundHandling'] = $baseUrl . $ground_handling_name;
         array_push($files, $ground_handling_name);
@@ -122,13 +121,13 @@ $today = str_replace(date('F'), strtoupper(date('F')), date('d F Y'));
 $_POST['today'] = $today;
 $_POST['is_email'] = False;
 
-$template_data =  $twig->render('permits_landing.html.twig', $_POST);
+$template_data =  $twig->render("$file_name.html.twig", $_POST);
 
 
 $mpdf = new \Mpdf\Mpdf(['default_font' => 'dejavusans']);
 $mpdf->WriteHTML($template_data);
 
-$pdf_path = "uploads/" . $file_name . $user_name  . '_' . date('Ymd_His'). '.pdf';
+$pdf_path = "uploads/" . $file_name ."/". $user_name  . '_' . date('Ymd_His'). '.pdf';
 $mpdf->Output($pdf_path, 'F'); 
 
 
@@ -167,7 +166,7 @@ $_POST['radioLicense'] = $_SERVER['HTTP_HOST'] . $baseUrl . '/' . $_POST['radioL
 $_POST['download_link'] = $downloadLink;
 $_POST['is_email'] = True;
 
-$template_data =  $twig->render('permits_landing.html.twig', $_POST);
+$template_data =  $twig->render("$file_name.html.twig", $_POST);
 
 send_email('permits landing', 'Ops@whitecloudsaviation.com' , $template_data, $template_data, $file_name, $user_name);
 
