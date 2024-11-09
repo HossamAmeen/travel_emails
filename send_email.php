@@ -23,6 +23,7 @@ function send_email($Subject, $reciever, $body, $pdf_body, $file_name, $user_nam
         // Recipients
         $mail->setFrom('admin@whitecloudsaviation.com', $user_name);
         $mail->addAddress($reciever, 'Recipient Name');
+        // $mail->addAddress('hosamameen948@gmail.com', 'Recipient Name');
 
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = $Subject;
