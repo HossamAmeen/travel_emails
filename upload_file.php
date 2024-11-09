@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+require 'allow_cors.php';
 
 // Function to respond with JSON
 function respond($status, $message, $data = null) {
