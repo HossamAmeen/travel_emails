@@ -8,8 +8,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -77,7 +75,7 @@ if (isset($_FILES['crewDocument'])) {
     }
 }
 
-$files = [$_POST['crewDocument'], $_POST['fuelRelease'], $pdf_path];
+$files = [$_POST['crewDocument'], $_POST['fuelRelease']];
 
 if (!is_dir('uploads/zips')) {
     mkdir('uploads/zips', 0777, true);
@@ -90,7 +88,7 @@ $zip = new ZipArchive();
 if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
     exit("Unable to create zip file $zipFileName\n");
 }
-array_push($files, $pdf_path);
+// array_push($files, $pdf_path);
 // Add files to the zip archive
 foreach ($files as $file) {
     if (file_exists($file)) {
@@ -104,7 +102,7 @@ $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_
 
 $zipFileName = $baseUrl . '/' . $zipFileName;
 
-$_POST['download_link'] =  $baseUrl . '/' . $pdf_path;
+// $_POST['download_link'] =  $baseUrl . '/' . $pdf_path;
 $_POST['is_email'] = True;
 $template_data =  $twig->render("$file_name.html.twig", $_POST);
 

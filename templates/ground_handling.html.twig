@@ -173,13 +173,7 @@
                       border: 1px solid #fff;
                       margin-top: 10px;
                     ">
-                  <img src="./imgs/pdf.svg" alt="pdf" style="
-                        width: 16px;
-                        margin-right: 6px;
-                        padding: 0px;
-                        background-color: transparent;
-                        color: #fff;
-                      " />
+                  
                   Download
                 </a>
               </div>
@@ -200,13 +194,7 @@
                       border: 1px solid #fff;
                       margin-top: 10px;
                     ">
-                  <img src="./imgs/pdf.svg" alt="pdf" style="
-                        width: 16px;
-                        margin-right: 6px;
-                        padding: 0px;
-                        background-color: transparent;
-                        color: #fff;
-                      " />
+                  
                   Download
                 </a>
               </div>
@@ -222,7 +210,154 @@
               margin: 20px 0;
             " />
 
-        <!-- sectors -->
+            <!-- sectors -->
+            {% for item in sectors %}
+            <div class="sectors">
+              <div class="header-section" style="margin-top: 30px">
+                <span
+                  style="
+                    display: block;
+                    font-size: 25px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                  "
+                  >Flight Sectors - {{ loop.index }}</span
+                >
+                <hr
+                  style="
+                    max-width: 80px;
+                    height: 4px;
+                    border-color: #bda55d;
+                    background-color: #bda55d;
+                    border-radius: 12px;
+                    margin: 1px;
+                  "
+                />
+              </div>
+              <div class="form-data" style="margin: 20px 0px 40px">
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Departure Airport:</span
+                  >
+                  {{item['departureAirport']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Arrival Airport:</span
+                  >
+                  {{item['arrivalAirport']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Departure Date & Time:</span
+                  >
+                  {{item['departureDateTime']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Arrival Date & Time:</span
+                  >
+                  {{item['arrivalDateTime']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Departure Airport:</span
+                  >
+                  {{item['departureAirportAdd']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Arrival Airport:</span
+                  >
+                  {{item['arrivalAirportAdd']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Departure Date & Time:</span
+                  >
+                  {{item['departureDateTimeAdd']}}
+                </div>
+                <div
+                  class="title"
+                  style="margin-bottom: 18px; font-size: 18px; font-weight: 200"
+                >
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 10px;
+                      color: #bda55d;
+                      font-weight: 500;
+                    "
+                    >Arrival Date & Time:</span
+                  >
+                  {{item['arrivalDateTimeAdd']}}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
         
 
         <!-- Comment -->
@@ -255,6 +390,7 @@
       </div>
     </div>
   </div>
+  {% if is_email%}
   <!-- Action Buttons -->
   <div class="btns" style="width: 100%; margin: 40px auto 0px; text-align: center">
     <a href="{{downloadLink}}" style="
@@ -284,6 +420,7 @@
       <span>+ Download Form and PDF</span>
     </a>
   </div>
+  {% endif %}
 </body>
 
 </html>
