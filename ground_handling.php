@@ -88,7 +88,7 @@ $zip = new ZipArchive();
 if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
     exit("Unable to create zip file $zipFileName\n");
 }
-// array_push($files, $pdf_path);
+array_push($files, $pdf_path);
 // Add files to the zip archive
 foreach ($files as $file) {
     if (file_exists($file)) {
