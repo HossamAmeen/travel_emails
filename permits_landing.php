@@ -13,7 +13,6 @@ use Twig\Loader\FilesystemLoader;
 
 $file_name = "permits_landing";
 
-# depercated
 function upload_file($upload_name, $file){
         $path = "uploads/$file_name" . date('Ymd_His')  . rand(1,10) . "_" . $file['name']; 
         echo $path;
