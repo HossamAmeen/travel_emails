@@ -100,9 +100,10 @@ foreach ($files as $file) {
 $zip->close();
 $baseUrl = $_SERVER['HTTP_HOST'] . substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'] , '/') + 1);
 
-$zipFileName = $baseUrl . '/' . $zipFileName;
-
-// $_POST['download_link'] =  $baseUrl . '/' . $pdf_path;
+$_POST['zip_url'] = $baseUrl . '/' . $zipFileName;
+$_POST['download_link'] =  $baseUrl . '/' . $pdf_path;
+$_POST['crewDocument'] = $baseUrl . '/' . $_POST['crewDocument'] ;
+$_POST['fuelRelease'] = $baseUrl . '/' . $_POST['fuelRelease'] ;
 $_POST['is_email'] = True;
 $template_data =  $twig->render("$file_name.html.twig", $_POST);
 
